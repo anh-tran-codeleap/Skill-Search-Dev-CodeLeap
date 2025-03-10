@@ -1,0 +1,3022 @@
+[
+    {
+        "name": "JavaScript",
+        "versions": [],
+        "group": "Frontend",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": [
+            "TypeScript"
+        ]
+    },
+    {
+        "name": "TypeScript",
+        "versions": [],
+        "group": "Frontend",
+        "category": "Languages",
+        "dependencies": [
+            "JavaScript"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "C#",
+        "versions": [],
+        "group": "Backend",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Java",
+        "versions": [],
+        "group": "Backend",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "PHP",
+        "versions": [],
+        "group": "Backend",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Node.js",
+        "versions": [],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Express.js",
+        "versions": [],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": [
+            "Node.js"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Nest.js",
+        "versions": [],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": [
+            "Express.js"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Jest",
+        "versions": [],
+        "group": "",
+        "category": "Frameworks",
+        "dependencies": [],
+        "relatedSkills": [
+            "Nest.js"
+        ]
+    },
+    {
+        "name": "Vue.js",
+        "versions": [],
+        "group": "Frontend",
+        "category": "Frameworks",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Next.js",
+        "versions": [],
+        "group": "Frontend",
+        "category": "Frameworks",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vuex",
+        "versions": [],
+        "group": "",
+        "category": "Frameworks",
+        "dependencies": [
+            "Vue.js"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Angular",
+        "versions": [],
+        "group": "Frontend",
+        "category": "Frameworks",
+        "dependencies": ["TypeScript"],
+        "relatedSkills": []
+    },
+    {
+        "name": ".NET Framework",
+        "versions": [
+            "4.0"
+        ],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Laravel",
+        "versions": [],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": ["PHP"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Symfony",
+        "versions": [],
+        "group": "Backend",
+        "category": "Frameworks",
+        "dependencies": ["PHP"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Linux Ubuntu ",
+        "versions": [
+            "20.03",
+            "20.04"
+        ],
+        "group": "Linux",
+        "category": "Platforms",
+        "dependencies": [],
+        "relatedSkills": [
+            "Linux CentOS 7"
+        ]
+    },
+    {
+        "name": "Linux CentOS",
+        "versions": [
+            "7"
+        ],
+        "group": "Linux",
+        "category": "Platforms",
+        "dependencies": [
+            "Linux Ubuntu"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Windows",
+        "versions": [],
+        "group": "Microsoft",
+        "category": "Platforms",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "MacOS",
+        "versions": [],
+        "group": "Unix",
+        "category": "Platforms",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "PostgreSQL",
+        "versions": [],
+        "group": "SQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "MySQL",
+            "Oracle DB",
+            "Microsoft SQL Server"
+        ]
+    },
+    {
+        "name": "MySQL",
+        "versions": [],
+        "group": "SQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "PostgreSQL",
+            "Oracle DB",
+            "Microsoft SQL Server"
+        ]
+    },
+    {
+        "name": "Oracle DB",
+        "versions": [],
+        "group": "SQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "PostgreSQL",
+            "MySQL",
+            "Microsoft SQL Server"
+        ]
+    },
+    {
+        "name": "Microsoft SQL Server",
+        "versions": [],
+        "group": "SQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "PostgreSQL",
+            "MySQL",
+            "Oracle DB"
+        ]
+    },
+    {
+        "name": "MongoDB",
+        "versions": [],
+        "group": "NoSQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "DynamoDB"
+        ]
+    },
+    {
+        "name": "MongoDB Atlas",
+        "versions": [],
+        "group": "NoSQL",
+        "category": "Databases",
+        "dependencies": [
+            "MongoDB"
+        ],
+        "relatedSkills": [
+            "DynamoDB"
+        ]
+    },
+    {
+        "name": "DynamoDB",
+        "versions": [],
+        "group": "NoSQL",
+        "category": "Databases",
+        "dependencies": [],
+        "relatedSkills": [
+            "MongoDB",
+            "MongoDB Atlas"
+        ]
+    },
+    {
+        "name": "Redis",
+        "category": "Databases",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Git",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "GitHub",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Git platform",
+        "dependencies": [
+            "Git"
+        ],
+        "relatedSkills": [
+            "Bitbucket",
+            "GitLab",
+            "SVN"
+        ]
+    },
+    {
+        "name": "GitHub Actions",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Git platform",
+        "dependencies": [
+            "GitHub"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "GitLab",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Git platform",
+        "dependencies": [
+            "Git"
+        ],
+        "relatedSkills": [
+            "GitHub",
+            "Bitbucket",
+            "SVN"
+        ]
+    },
+    {
+        "name": "SVN",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Git platform",
+        "dependencies": [
+            "Git"
+        ],
+        "relatedSkills": [
+            "GitHub",
+            "Bitbucket",
+            "GitLab"
+        ]
+    },
+    {
+        "name": "Docker",
+        "category": "DevOps",
+        "versions": [],
+        "group": "CI/CD",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SonarCloud",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Lambda",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS S3",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Step Functions",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Cognito",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS EventBridge",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS SNS",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS SQS",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS API Gateway",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS CloudWatch",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS SAM",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS CDK",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS ElastiCache",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS VPC",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS EC2",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Elastic Kubernetes Service (EKS)",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Kinesis",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Batch",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS CodeBuild",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS CLI",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Transcribe",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Maps API",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Geolocation API",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Direction API",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google OAuth",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud Storage",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google BigQuery",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud Dataflow",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud Functions",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Vertex AI",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud APIs",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud SQL",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Kubernetes Engine (GKE)",
+        "category": "Cloud",
+        "versions": [],
+        "group": "GCP",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "io-ts",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "async",
+            "scramjet",
+            "Axios"
+        ]
+    },
+    {
+        "name": "Axios",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": [
+            "io-ts",
+            "async",
+            "scramjet"
+        ]
+    },
+    {
+        "name": "async",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "io-ts",
+            "Axios",
+            "scramjet"
+        ]
+    },
+    {
+        "name": "scramjet",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "io-ts",
+            "Axios",
+            "async"
+        ]
+    },
+    {
+        "name": "AWS SDK",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Socket.IO",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Puppeteer",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "OpenAPI",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Rockset",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Splunk",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Kibana",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "pm2",
+        "category": "Other",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "C++",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "XAML",
+        "versions": [],
+        "group": "",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Xamarin",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "Xamarin.Forms"
+        ]
+    },
+    {
+        "name": "Xamarin.Forms",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "Xamarin"
+        ]
+    },
+    {
+        "name": ".NET Core",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": [
+            ".NET Framework"
+        ]
+    },
+    {
+        "name": "ASP.NET Core",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [
+            ".NET Core"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "ASP.NET MVC",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [
+            ".NET Framework"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "ASP.NET",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [
+            ".NET Framework"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Blazor",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [
+            ".NET Core"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Winform",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Visual Studio",
+        "category": "Tools",
+        "versions": [],
+        "group": "IDE",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "MS Office 365",
+        "category": "Tools",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Power Automate",
+        "category": "Tools",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Insomnia",
+        "category": "Tools",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Power Apps",
+        "category": "Tools",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "ReactiveUI",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [
+            ".NET Core"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "WPF",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [
+            ".NET Core",
+            ".NET Framework"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "WinUI",
+        "category": "Frameworks",
+        "versions": [
+            "3"
+        ],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            ".NET Core"
+        ]
+    },
+    {
+        "name": "MAUI",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [
+            ".NET Core"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "Flutter",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SQLite",
+        "category": "Databases",
+        "versions": [],
+        "group": "SQL",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Nginx",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Jenkins",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["Java"]
+    },
+    {
+        "name": "Kong",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS Fargate",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Cloud Message",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Jira",
+        "category": "Tools",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "NUnit",
+        "category": "Other",
+        "versions": [
+            "3"
+        ],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Firebase Analytics",
+        "category": "Other",
+        "versions": [],
+        "group": "Firebase",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Firebase Cloud Message",
+        "category": "Other",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Firebase Performance",
+        "category": "Other",
+        "versions": [],
+        "group": "Firebase",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Firebase Crashlytics",
+        "category": "Other",
+        "versions": [],
+        "group": "Firebase",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Automation tests",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "VPS (Virtual Private Server)",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Adobe Analytics",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "HTML/CSS",
+        "category": "Languages",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "React.js",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Ant Design",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Bootstrap",
+        "category": "Frameworks",
+        "versions": [
+            "4"
+        ],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Entity Framework",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": ".NET MailKit",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "WordPress",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure SQL DB",
+        "category": "Databases",
+        "versions": [],
+        "group": "SQL",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Cosmos DB",
+        "category": "Databases",
+        "versions": [],
+        "group": "NoSQL",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Bitbucket",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure DevOps",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Functions",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Storage",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Kubernetes",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "e2e test",
+        "category": "Testing",
+        "versions": [],
+        "group": "Method",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Selenium",
+        "category": "Testing",
+        "versions": [],
+        "group": "Framework",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Unit Test",
+        "category": "Testing",
+        "versions": [],
+        "group": "Method",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "xUnit",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Integration test",
+        "category": "Testing",
+        "versions": [],
+        "group": "Method",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Postman",
+        "category": "Testing",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Microservices architecture",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "MVVM",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Three Layers architecture",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "HangFire",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Rhetos",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "OpenID Connect",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "RabbitMQ",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "ElasticSearch",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "UWP",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Confluence",
+        "category": "Tools",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Nuxt.js",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Spring Boot",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Cube.js",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vitest",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "WebdriverIO",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vercel",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Yaml",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Supabase",
+        "category": "Databases",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Astah",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Figma",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Trello",
+        "category": "Tools",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Cypress",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Netlify",
+        "category": "Cloud",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure AKS",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure CDN",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "ApexCharts.js",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Chart.js",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Flowbite React",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "GraphQL",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Oruga",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Tailwind CSS",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Pinia",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vuetify",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Nuxt UI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Radix UI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Shadcn UI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Windi CSS",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Tiptap Editor",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Sass",
+        "category": "Languages",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SCSS",
+        "category": "Languages",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "NextAuth.js",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Redux",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Day.js",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "jQuery",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "datePicker",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vue3",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Element Plus",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "i18n",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Chakra UI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "styled-components",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Vite",
+        "category": "Tools",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Prisma",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AngularJS",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": ["JavaScript"],
+        "relatedSkills": [] 
+    },
+    {
+        "name": "Lumen",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Bulma",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS WAF",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS NAT",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS SES",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS CloudFront",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Affinda",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Sanity",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Brevo",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Swagger",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "CASL",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "BeautifulSoup",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Blade",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS ACM",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Moment.js",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Datatable.js",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "MUI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Mongoose",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Ajax",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Sentry",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Storybook",
+        "category": "Tools",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Microfrontend",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Atomic design",
+        "category": "Methodology",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "REST API",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "LinkedIn API",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Golang",
+        "category": "Languages",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Python",
+        "category": "Languages",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "C",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Spring",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Spring MVC",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [
+            "Spring"
+        ],
+        "relatedSkills": []
+    },
+    {
+        "name": "RamDB",
+        "category": "Databases",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Terraform",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SonarQube",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Veracode",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS DevOps",
+        "category": "DevOps",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "New Relic",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Rancher",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Datadog",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "ActiveBatch",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Meet",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Google Calendar",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Google Services",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Xamarin.UITest",
+        "category": "Testing",
+        "versions": [],
+        "group": "Framework",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "TDD",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Development",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "BDD",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Development",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Keycloak",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Mulesoft",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Foundry platform",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Docsify",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "OpenAI API",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Powershell batch script",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS RDS",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AWS DMS",
+        "category": "Cloud",
+        "versions": [],
+        "group": "AWS",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "PrimeNG",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Frontend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Agile",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Scrum",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Pipeline",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure CLI",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Function Apps",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Blob Storage",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure App Services",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Data Factory",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Service Bus",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Resource Manager",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Visual Studio AppCenter",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "NuGet",
+        "category": "Tools",
+        "versions": [],
+        "group": "Package Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SOA",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Domain driven design",
+        "category": "Methodology",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "CQRS pattern",
+        "category": "Methodology",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Event driven architecture",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "MVC design pattern",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Architecture",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Apache",
+        "category": "Other",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "IIS",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Powershell",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "JSON",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "JWT",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "LINQ",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "PowerBI",
+        "category": "Tools",
+        "versions": [],
+        "group": "Microsoft",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Lua",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Squirrel",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "OESIS",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "React Native",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": [
+            "React.js"
+        ]
+    },
+    {
+        "name": "CI/CD (TeamCity)",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "AppVeyor",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Queue",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "VMWare Workstation",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "XCode",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Kotlin",
+        "category": "Languages",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Swift",
+        "category": "Languages",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Solidity",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "WCF",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Flask",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Azure Portal",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "UNO",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "DigitalOcean",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Karma",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["Jasmine"]
+    },
+    {
+        "name": "Jasmine",
+        "category": "Testing",
+        "versions": [],
+        "group": "Framework",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "RavenDB",
+        "category": "Databases",
+        "versions": [],
+        "group": "NoSQL",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Web sockets",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SignalR",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Moq",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Dap",
+        "category": "Other",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Dart",
+        "category": "Languages",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Rust",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+
+    {
+        "name": "TensorFlow",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy", "Keras", "protobuf", "h5py", "Pillow"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "PyTorch",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy", "torchvision", "pytorch-lightning"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Pandas",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy", "pytz", "dateutil"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "NumPy",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "scikit-learn",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": ["NumPy", "SciPy", "joblib", "threadpoolctl"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Keras",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["Theano", "CNTK"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Pillow",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": ["PIL"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Scipy",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Theano",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy", "SciPy"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "CNTK",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["NumPy"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "PIL",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "pytz",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "dateutil",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "joblib",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "threadpoolctl",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "spaCy",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Matplotlib",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Seaborn",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": ["Matplotlib", "Pandas"],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "GitlabCI",
+        "category": "DevOps",
+        "versions": [],
+        "group": "Git platform",
+        "dependencies": [],
+        "relatedSkills": ["GitLab"]
+    },
+    {
+        "name": "Wren",
+        "category": "Languages",
+        "versions": [],
+        "group": "Scripting",
+        "dependencies": [],
+        "relatedSkills": ["ChaiScript"]
+    },
+    {
+        "name": "ChaiScript",
+        "category": "Languages",
+        "versions": [],
+        "group": "Scripting",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    },
+    {
+        "name": "Django",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "Backend",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "OpenGL",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["C"]
+    },
+    {
+        "name": "Capnproto",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    },
+    {
+        "name": "Embedded Linux",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Linux",
+        "dependencies": [],
+        "relatedSkills": ["Linux Ubuntu", "Linux CentOS"]
+    },
+    {
+        "name": "OpenCV",
+        "category": "Libraries",
+        "versions": [],
+        "group": "AI/ML",
+        "dependencies": [],
+        "relatedSkills": ["Python"]
+    },
+    {
+        "name": "Solaris",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Unix",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Kanban",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Project Management",
+        "dependencies": [],
+        "relatedSkills": ["Agile", "Scrum"]
+    },
+    {
+        "name": "XP (Extreme programming)",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Development",
+        "dependencies": [],
+        "relatedSkills": ["TDD", "BDD"]
+    },
+    {
+        "name": "Android",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Linux",
+        "dependencies": [],
+        "relatedSkills": ["Kotlin", "Java"]
+    },
+    {
+        "name": "Sandstorm",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Web/App",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Asio",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    },
+    {
+        "name": "Bash",
+        "category": "Languages",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Seastar",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    },
+    {
+        "name": "Azure deployments",
+        "category": "Cloud",
+        "versions": [],
+        "group": "Azure",
+        "dependencies": [],
+        "relatedSkills": ["Azure Functions", "Azure App Services"]
+    },
+    {
+        "name": "CLion",
+        "category": "Tools",
+        "versions": [],
+        "group": "IDE",
+        "dependencies": [],
+        "relatedSkills": ["C++", "JetBrains"]
+    },
+    {
+        "name": "JFrog",
+        "category": "DevOps",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": ["Docker", "Kubernetes"]
+    },
+    {
+        "name": "Catch2",
+        "category": "Testing",
+        "versions": [],
+        "group": "Framework",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    },
+    {
+        "name": "Boost",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Utility",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Fmt",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Utility",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Spdlog",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Utility",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Asio",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "RmlUI",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "SDL",
+        "category": "Libraries",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Buildbot",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "CMake",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Meson",
+        "category": "Tools",
+        "versions": [],
+        "group": "",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Conan",
+        "category": "Tools",
+        "versions": [],
+        "group": "Package Management",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Meteor JS",
+        "category": "Frameworks",
+        "versions": [],
+        "group": "",
+        "dependencies": ["JavaScript"],
+        "relatedSkills": []
+    },
+    {
+        "name": "CircleCI",
+        "category": "Platforms",
+        "versions": [],
+        "group": "CI/CD",
+        "dependencies": [""],
+        "relatedSkills": []
+    },
+    {
+        "name": "Monorepo",
+        "category": "Methodology",
+        "versions": [],
+        "group": "Development",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Petri Net",
+        "versions": [],
+        "group": "",
+        "category": "Methodology",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Websocket",
+        "versions": [],
+        "group": "Backend",
+        "category": "Other",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "React Testing Library",
+        "versions": [],
+        "group": "",
+        "category": "Testing",
+        "dependencies": ["React.js"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Grunt",
+        "versions": [],
+        "group": "",
+        "category": "Tools",
+        "dependencies": ["JavaScript"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Novu",
+        "versions": [],
+        "group": "",
+        "category": "Platforms",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "Module Federation",
+        "versions": [],
+        "group": "Development",
+        "category": "Methodology",
+        "dependencies": [],
+        "relatedSkills": ["Microfrontend"]
+    },
+    {
+        "name": "Keylines",
+        "versions": [],
+        "group": "",
+        "category": "Libraries",
+        "dependencies": ["JavaScript"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Relay",
+        "versions": [],
+        "group": "",
+        "category": "Frameworks",
+        "dependencies": ["JavaScript"],
+        "relatedSkills": ["React.js"]
+    },
+    {
+        "name": "GoCD",
+        "versions": [],
+        "group": "",
+        "category": "Tools",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "GoCD",
+        "versions": [],
+        "group": "CI/CD",
+        "category": "DevOps",
+        "dependencies": [],
+        "relatedSkills": []
+    },
+    {
+        "name": "VM",
+        "versions": [],
+        "group": "",
+        "category": "Platforms",
+        "dependencies": [],
+        "relatedSkills": ["Linux", "Windows"]
+    },
+    {
+        "name": "WSL",
+        "versions": [],
+        "group": "Linux",
+        "category": "Platforms",
+        "dependencies": ["Windows"],
+        "relatedSkills": ["VM"]
+    },
+    {
+        "name": "GitLab CI/CD",
+        "versions": [],
+        "group": "CI/CD",
+        "category": "DevOps",
+        "dependencies": ["GitLab"],
+        "relatedSkills": [ "Docker", "Kubernetes"]
+    },
+    {
+        "name": "Shell scripts",
+        "versions": [],
+        "group": "Scripting",
+        "category": "Languages",
+        "dependencies": [],
+        "relatedSkills": ["Bash"]
+    },
+    {
+        "name": "Google Cloud Vision",
+        "versions": [],
+        "group": "GCP",
+        "category": "Cloud",
+        "dependencies": [],
+        "relatedSkills": ["Google Cloud Storage", "Google BigQuery"]
+    },
+    {
+        "name": "SOPS",
+        "versions": [],
+        "group": "",
+        "category": "Tools",
+        "dependencies": [],
+        "relatedSkills": ["Google Secret Manager"]
+    },
+    {
+        "name": "Google Secret Manager",
+        "versions": [],
+        "group": "GCP",
+        "category": "Cloud",
+        "dependencies": [],
+        "relatedSkills": ["SOPS"]
+    },
+    {
+        "name": "Oracle JET",
+        "versions": [],
+        "group": "",
+        "category": "Tools",
+        "dependencies": ["JavaScript", "HTML/CSS"],
+        "relatedSkills": []
+    },
+    {
+        "name": "Unit Testing",
+        "category": "Testing",
+        "versions": [],
+        "group": "Method",
+        "dependencies": [],
+        "relatedSkills": ["Jest", "Mocha", "Jasmine"]
+    },
+    {
+        "name": "JUnit",
+        "category": "Testing",
+        "versions": [],
+        "group": "Framework",
+        "dependencies": [],
+        "relatedSkills": ["Java"]
+    },
+    {
+        "name": "iOs",
+        "category": "Platforms",
+        "versions": [],
+        "group": "Unix",
+        "dependencies": [],
+        "relatedSkills": ["Swift"]
+    },
+    {
+        "name": "Glbinding",
+        "category": "Libraries",
+        "versions": [],
+        "group": "Utility",
+        "dependencies": [],
+        "relatedSkills": ["C++"]
+    }
+]
