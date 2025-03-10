@@ -19,8 +19,16 @@ namespace SearchBlazor.Components.BasicSearch
     public class SearchEngine
     {
         public static List<Skill> Data { get; set; } = new List<Skill>();
-        private static RAMDirectory _directory = new RAMDirectory();
+        /// <summary>
+        /// Directory to store the index on disk
+        /// if want to search on RAM, use RAMDirectory: _directory = new RAMDirectory();    and uncomment the third line in Index() method
+        /// if want to search on Disk, use FSDirectory: _directory = FSDirectory.Open(indexPath);
+        /// </summary>
+        private static RAMDirectory _Adirectory = new();
+        private static FSDirectory _directory;
         public static IndexWriter? Writer { get; set; }
+        public const string LUCENENET_DIRECTORY = "LuceneIndex";
+
 
         public static void LoadDataFromJson()
         {
@@ -37,11 +45,62 @@ namespace SearchBlazor.Components.BasicSearch
             }
         }
 
+        #region Indexing the data that store on Disk
+        public static void EnsureIndex()
+        {
+            string indexPath = Path.Combine(Directory.GetCurrentDirectory(), LUCENENET_DIRECTORY);
+
+            // Check if index directory exists and contains index files
+            if (Directory.Exists(indexPath) && Directory.GetFiles(indexPath).Length > 0)
+            {
+                _directory = FSDirectory.Open(indexPath);
+                Console.WriteLine("Lucene index already exists. Skipping indexing.");
+                return;
+            }
+
+            Console.WriteLine("Index not found. Creating a new index...");
+            Index1();
+        }
+
+        public static void Index1()
+        {
+            LoadDataFromJson();
+            const LuceneVersion lv = LuceneVersion.LUCENE_48;
+            //  Analyzer analyzer = new StandardAnalyzer(lv);
+            Analyzer analyzer = new EdgeNGramAnalyzer(lv);
+            // Store index in a persistent directory
+            string indexPath = Path.Combine(Directory.GetCurrentDirectory(), LUCENENET_DIRECTORY);
+            _directory = FSDirectory.Open(indexPath);
+
+            var config = new IndexWriterConfig(lv, analyzer);
+            Writer = new IndexWriter(_directory, config);
+
+            foreach (var tech in Data)
+            {
+                var doc = new Document
+                {
+                    new TextField("Name", tech.Name, Field.Store.YES),
+                    new TextField("Category", tech.Category, Field.Store.YES),
+                    new TextField("Group", tech.Group, Field.Store.YES),
+                    new TextField("Dependencies", string.Join(", ", tech.Dependencies), Field.Store.YES),
+                    new TextField("RelatedSkills", string.Join(", ", tech.RelatedSkills), Field.Store.YES)
+                };
+
+                Writer.AddDocument(doc);
+            }
+
+            Writer.Commit();
+        }
+        #endregion
+
+        #region Searching the data that store on RAM
         public static void Index()
         {
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
             Analyzer analyzer = new StandardAnalyzer(lv);
-            _directory = new RAMDirectory();
+            // _directory = new RAMDirectory();
+
+
             var config = new IndexWriterConfig(lv, analyzer);
             Writer = new IndexWriter(_directory, config);
 
@@ -68,32 +127,11 @@ namespace SearchBlazor.Components.BasicSearch
                 dependenciesField.SetStringValue(string.Join(", ", tech.Dependencies));
                 relatedSkillsField.SetStringValue(string.Join(", ", tech.RelatedSkills));
 
-                // var name = tech.Name ?? string.Empty;
-                // var category = tech.Category ?? string.Empty;
-                // var group = tech.Group ?? string.Empty;
-                // var dependencies = string.Join(", ", tech.Dependencies ?? new List<string>());
-                // var relatedSkills = string.Join(", ", tech.RelatedSkills ?? new List<string>());
-
-                // var nameField = new StringField("Name", name, Field.Store.YES);
-                // var categoryField = new StringField("Category", category, Field.Store.YES);
-                // var groupField = new StringField("Group", group, Field.Store.YES);
-                // var dependenciesField = new TextField("Dependencies", dependencies, Field.Store.YES);
-                // var relatedSkillsField = new TextField("RelatedSkills", relatedSkills, Field.Store.YES);
-
-                // var d = new Document
-                // {
-                //     nameField,
-                //     categoryField,
-                //     groupField,
-                //     dependenciesField,
-                //     relatedSkillsField
-                // };
-
                 Writer.AddDocument(d);
             }
-
             Writer.Commit();
         }
+        #endregion
 
         public static void Dispose()
         {
@@ -112,8 +150,11 @@ namespace SearchBlazor.Components.BasicSearch
             string[] fields = ["Name", "Group", "Category", "Dependencies", "RelatedSkills"];
             var queryParser = new MultiFieldQueryParser(lv, fields, analyzer);
             queryParser.DefaultOperator = Operator.AND;
+
+            string modifiedQuery = $"{input.Trim()}~1";
+
             //clean the search term
-            string _input = EscapeSearchTerm(input.Trim());
+            string _input = EscapeSearchTerm(modifiedQuery);
             Query query = queryParser.Parse(_input);
 
             ScoreDoc[] docs = searcher.Search(query, 1000).ScoreDocs;
@@ -192,7 +233,7 @@ namespace SearchBlazor.Components.BasicSearch
             input = Regex.Replace(input, @"\]", " ");
             input = Regex.Replace(input, @"\^", " ");
             input = Regex.Replace(input, @"\""", " ");
-            input = Regex.Replace(input, @"\~", " ");
+            //  input = Regex.Replace(input, @"\~", " ");
             input = Regex.Replace(input, @"\*", " ");
             input = Regex.Replace(input, @"\?", " ");
             input = Regex.Replace(input, @"\:", " ");

@@ -1,6 +1,9 @@
 using BlazorStrap;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SearchBlazor.Components;
 using SearchBlazor.Components.BasicSearch;
+using SearchBlazor.Components.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +13,13 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddBlazorStrap();
 
+// builder.Services.AddDbContext<SkillContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 //search engine
-SearchEngine.LoadDataFromJson();
-SearchEngine.Index();
+//SearchEngine.LoadDataFromJson();
+//SearchEngine.Index();
+SearchEngine.EnsureIndex();
 
 var app = builder.Build();
 

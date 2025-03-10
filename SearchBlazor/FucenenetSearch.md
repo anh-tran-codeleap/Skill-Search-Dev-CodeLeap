@@ -81,8 +81,3 @@ The search engine can be customized by modifying:
 - Fields to search across in `MultiFieldQueryParser`
 - Boost factors for fields (giving some fields higher priority)
 - Number of suggestions returned by autocomplete
-
-## 📚 Additional Resources
-
-- [Lucene.Net Documentation](https://lucenenet.apache.org/docs/4.8.0-beta00016/)
-- [Apache Lucene Wiki](https://cwiki.apache.org/confluence/display/LUCENE)

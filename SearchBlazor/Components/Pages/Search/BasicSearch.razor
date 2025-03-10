@@ -62,11 +62,54 @@
                     {
                         <BSListGroupItem>
                             <p class="mb-1">@result.Name</p>
+
+                            <p class="mb-1">
+                                <strong>Versions:</strong>
+                                @if (result.Versions.Any())
+                                {
+                                    <span>@string.Join(", ", result.Versions)</span>
+                                }
+                                else
+                                {
+                                    <span>Versions is empty</span>
+                                }
+                            </p>
+
+                            <p class="mb-1">@result.Group</p>
+                            <p class="mb-1">@result.Category</p>
+
+                            <p class="mb-1">
+                                <strong>Dependencies:</strong>
+                                @if (result.Dependencies.Any())
+                                {
+                                    <span>@string.Join(", ", result.Dependencies)</span>
+                                }
+                                else
+                                {
+                                    <span>Dependencies is empty</span>
+                                }
+                            </p>
+
+                            <p class="mb-1">
+                                <strong>Related Skills:</strong>
+                                @if (result.RelatedSkills.Any())
+                                {
+                                    <span>@string.Join(", ", result.RelatedSkills)</span>
+                                }
+                                else
+                                {
+                                    <span>Related Skills is empty</span>
+                                }
+                            </p>
+                        </BSListGroupItem>
+
+                        @* <BSListGroupItem>
+                            <p class="mb-1">@result.Name</p>
                             <pre>@(result.Versions.Count() == 0 ? "Versions is empty" : "Versions has values: " + string.Join(", ", result.Versions))</pre>
                             <p class="mb-1">@result.Group</p>
                             <p class="mb-1">@result.Category</p>
                             <pre>@(result.RelatedSkills.Count() == 0 ? "Versions is empty" : "Versions has values: " + string.Join(", ", result.RelatedSkills))</pre>
-                        </BSListGroupItem>
+                        </BSListGroupItem> *@
                     }
                 </BSListGroup>
             </div>
