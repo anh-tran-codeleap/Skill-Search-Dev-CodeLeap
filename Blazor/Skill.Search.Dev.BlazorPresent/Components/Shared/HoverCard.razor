@@ -1,0 +1,22 @@
+@* Razor code here *@
+<MudCard Class="custom-card">
+    <MudCardContent>
+        Hover over me!
+    </MudCardContent>
+</MudCard>
+
+
+@* CSS code here, since razor component doesn't work with Isolate CSS in Blaozr *@
+<style>
+    .custom-card {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        background-color: var(--mud-palette-primary);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+@code {
+
+}

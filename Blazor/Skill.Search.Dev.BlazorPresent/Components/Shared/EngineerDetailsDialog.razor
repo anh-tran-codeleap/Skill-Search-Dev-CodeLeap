@@ -1,0 +1,79 @@
+@inject ISnackbar Snackbar
+<MudDialog>
+    <TitleContent>
+        <div class="d-flex align-center">
+            <MudAvatar Color="Color.Primary" Class="mr-3">@Engineer.Name[0]</MudAvatar>
+            <MudText Typo="Typo.h6">@Engineer.Name</MudText>
+        </div>
+    </TitleContent>
+    <DialogContent>
+        <MudTabs Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+            <MudTabPanel Text="Profile" Icon="@Icons.Material.Filled.Person">
+                <div class="d-flex flex-column gap-4">
+                    <div>
+                        <MudText Typo="Typo.subtitle1" Color="Color.Primary">Title</MudText>
+                        <MudText Typo="Typo.body1">@Engineer.Title</MudText>
+                    </div>
+                    
+                    <div>
+                        <MudText Typo="Typo.subtitle1" Color="Color.Primary">Skills</MudText>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            @foreach (var skill in Engineer.Skills)
+                            {
+                                <MudChip T="string" Color="Color.Primary" Size="Size.Small">@skill</MudChip>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <MudText Typo="Typo.subtitle1" Color="Color.Primary">Experience</MudText>
+                        <MudText Typo="Typo.body1">5+ years</MudText>
+                    </div>
+                    
+                    <div>
+                        <MudText Typo="Typo.subtitle1" Color="Color.Primary">Summary</MudText>
+                        <MudText Typo="Typo.body2">
+                            @Engineer.Name is an experienced @Engineer.Title with expertise in @string.Join(", ", Engineer.Skills).
+                            They have a strong background in software development and a passion for creating efficient, scalable solutions.
+                        </MudText>
+                    </div>
+                </div>
+            </MudTabPanel>
+            
+            <MudTabPanel Text="JSON Data" Icon="@Icons.Material.Filled.Code">
+                <MudPaper Elevation="0" Class="pa-4 mud-background-gray rounded-lg">
+                    <pre style="overflow: auto; max-height: 300px;">@System.Text.Json.JsonSerializer.Serialize(Engineer, new System.Text.Json.JsonSerializerOptions { WriteIndented = true })</pre>
+                </MudPaper>
+                <MudButton OnClick="CopyJson" StartIcon="@Icons.Material.Filled.ContentCopy" Color="Color.Primary" Class="mt-4">
+                    Copy JSON
+                </MudButton>
+            </MudTabPanel>
+        </MudTabs>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="DownloadPdf" Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Download">
+            Download PDF
+        </MudButton>
+        <MudButton OnClick="Cancel" Color="Color.Primary">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
+    [Parameter] public Engineer Engineer { get; set; }
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private void CopyJson()
+    {
+        // In a real app, you would use JSRuntime to copy to clipboard
+        Snackbar.Add("JSON copied to clipboard", Severity.Success);
+    }
+
+    private void DownloadPdf()
+    {
+        // In a real app, you would generate and download a PDF
+        Snackbar.Add($"Downloading PDF for {Engineer.Name}", Severity.Success);
+    }
+
+}

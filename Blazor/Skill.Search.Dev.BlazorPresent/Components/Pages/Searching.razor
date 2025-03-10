@@ -1,0 +1,136 @@
+@page "/searching"
+@using System.Threading
+@inject IDialogService DialogService
+
+<PageTitle>Engineer Skill Search</PageTitle>
+
+<MudPaper Class="pa-4" Outlined="true">
+    <MudText Class="mb-2" Typo="Typo.h5"><b>Engineer Skill Search</b></MudText>
+    <MudGrid Class="ma-1">
+        <MudItem xs="12">
+            <MudAutocomplete T="string" 
+                             Label="Skills" 
+                             @bind-Value="searchValue"
+                             SearchFunc="@SearchSkills"
+                             ResetValueOnEmptyText="true"
+                             CoerceText="true"
+                             CoerceValue="true"
+                             SelectValueOnTab="true"
+                             AdornmentIcon="@Icons.Material.Filled.Search" 
+                             AdornmentColor="Color.Primary"
+                             OnKeyDown="@HandleKeyDown">
+                <ProgressIndicatorInPopoverTemplate>
+                    <MudList T="string" ReadOnly>
+                        <MudListItem>
+                            Loading...
+                        </MudListItem>
+                    </MudList>
+                </ProgressIndicatorInPopoverTemplate>
+            </MudAutocomplete>
+        </MudItem>
+
+        <MudItem xs="12">
+            <MudText Typo="Typo.h6">Search Results:</MudText>
+            <MudList T="string" Clickable="true">
+                @if (filteredEngineers.Any())
+                {
+                    @foreach (var engineer in filteredEngineers)
+                    {
+                        <MudListItem OnClick="@(() => OpenEngineerDetails(engineer))">
+                            <div class="d-flex align-center">
+                                <MudAvatar Color="Color.Primary" Class="mr-3">@engineer.Name[0]</MudAvatar>
+                                <div>
+                                    <MudText Typo="Typo.body1">@engineer.Name</MudText>
+                                    <MudText Typo="Typo.body2">@engineer.Title</MudText>
+                                </div>
+                            </div>
+                        </MudListItem>
+                    }
+                }
+                else
+                {
+                    <MudListItem>No engineers found with this skill</MudListItem>
+                }
+            </MudList>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+<style>
+    .mud-list-item:hover {
+        background-color: var(--mud-palette-action-default-hover);
+    }
+</style>
+
+@code {
+    private string searchValue = "";
+    private List<Engineer> filteredEngineers = new();
+
+    private Dictionary<string, List<string>> skillGroups = new()
+    {
+        {"Frontend", new List<string> {"JavaScript", "TypeScript", "React", "Angular", "Vue", "CSS", "HTML"}},
+        {"Backend", new List<string> {"Node.js", "Python", "Java", "C#", "ASP.NET Core", "Express.js", "Django"}},
+        {"Database", new List<string> {"SQL", "MongoDB", "PostgreSQL", "MySQL", "Redis"}},
+        {"DevOps", new List<string> {"Docker", "Kubernetes", "AWS", "Azure", "CI/CD", "Jenkins"}},
+        {"Mobile", new List<string> {"React Native", "Flutter", "iOS (Swift)", "Android (Kotlin)"}},
+        {"AI/ML", new List<string> {"Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "NLP"}},
+        {"Other", new List<string> {"Git", "RESTful APIs", "GraphQL", "Agile Methodologies", "Microservices"}}
+    };
+
+    private List<Engineer> engineers = new()
+    {
+        new Engineer { Id = 1, Name = "Nam Ho", Title = "Senior Engineer", Skills = new List<string> { "JavaScript", "TypeScript", "AWS", "Node.js" } },
+        new Engineer { Id = 2, Name = "Jane Smith", Title = "Full Stack Engineer", Skills = new List<string> { "JavaScript", "Python", "SQL", "AWS" } },
+        new Engineer { Id = 3, Name = "Mike Johnson", Title = "Frontend Developer", Skills = new List<string> { "JavaScript", "React", "Angular", "CSS" } },
+        new Engineer { Id = 4, Name = "Sarah Williams", Title = "Backend Developer", Skills = new List<string> { "C#", "ASP.NET Core", "SQL", "Azure" } },
+        new Engineer { Id = 5, Name = "David Brown", Title = "DevOps Engineer", Skills = new List<string> { "Docker", "Kubernetes", "AWS", "Python" } }
+    };
+
+    private async Task<IEnumerable<string>> SearchSkills(string value, CancellationToken token)
+    {
+        // Simulate API delay
+        await Task.Delay(300, token);
+
+        if (string.IsNullOrEmpty(value))
+            return new string[0];
+
+        var lowerValue = value.ToLowerInvariant();
+        var matchingGroups = skillGroups.Keys.Where(g => g.ToLowerInvariant().Contains(lowerValue));
+        var matchingSkills = skillGroups.Values.SelectMany(skills => skills).Where(s => s.ToLowerInvariant().Contains(lowerValue));
+
+        return matchingGroups.Concat(matchingSkills).Distinct();
+    }
+
+    private async Task PerformSearch()
+    {
+        if (string.IsNullOrEmpty(searchValue))
+        {
+            filteredEngineers.Clear();
+        }
+        else
+        {
+            // Simulate API delay
+            await Task.Delay(300);
+            filteredEngineers = engineers.Where(e => e.Skills.Contains(searchValue, StringComparer.InvariantCultureIgnoreCase)).ToList();
+        }
+        StateHasChanged();
+    }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" || e.Key == "Escape")
+        {
+            await PerformSearch();
+        }
+    }
+
+    private void OpenEngineerDetails(Engineer engineer)
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium };
+        var parameters = new DialogParameters { ["Engineer"] = engineer };
+
+        DialogService.Show<EngineerDetailsDialog>($"{engineer.Name} Details", parameters, options);
+    }
+
+
+}
