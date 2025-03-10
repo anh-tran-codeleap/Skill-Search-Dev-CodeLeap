@@ -79,7 +79,7 @@
 
     private List<Engineer> engineers = new()
     {
-        new Engineer { Id = 1, Name = "Nam Ho", Title = "Senior Engineer", Skills = new List<string> { "JavaScript", "TypeScript", "AWS", "Node.js" } },
+        new Engineer { Id = 1, Name = "Nam Ho", Title = "Senior Engineer", Skills = new List<string> { "JavaScript", "TypeScript", "AWS", "Node.js","Docker", "Kubernetes", "AWS", "Python" ,"Docker", "Kubernetes", "AWS", "Python" ,"Docker", "Kubernetes", "AWS", "Python" ,"Docker", "Kubernetes", "AWS", "Python" ,"Docker", "Kubernetes", "AWS", "Python" ,"Docker", "Kubernetes", "AWS", "Python"  } },
         new Engineer { Id = 2, Name = "Jane Smith", Title = "Full Stack Engineer", Skills = new List<string> { "JavaScript", "Python", "SQL", "AWS" } },
         new Engineer { Id = 3, Name = "Mike Johnson", Title = "Frontend Developer", Skills = new List<string> { "JavaScript", "React", "Angular", "CSS" } },
         new Engineer { Id = 4, Name = "Sarah Williams", Title = "Backend Developer", Skills = new List<string> { "C#", "ASP.NET Core", "SQL", "Azure" } },
@@ -126,7 +126,7 @@
 
     private void OpenEngineerDetails(Engineer engineer)
     {
-        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Medium };
+        var options = new DialogOptions { CloseOnEscapeKey = true, FullScreen=true };
         var parameters = new DialogParameters { ["Engineer"] = engineer };
 
         DialogService.Show<EngineerDetailsDialog>($"{engineer.Name} Details", parameters, options);

@@ -48,6 +48,11 @@
                     Copy JSON
                 </MudButton>
             </MudTabPanel>
+            <MudTabPanel Text="PDF Resume" Icon="@Icons.Material.Filled.PictureAsPdf">
+                <div class="pdf-container " >
+                    <iframe src="/file.pdf" class="pdf-iframe" title="@Engineer.Name's Resume"></iframe>
+                </div>
+            </MudTabPanel>
         </MudTabs>
     </DialogContent>
     <DialogActions>
