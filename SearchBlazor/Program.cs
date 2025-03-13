@@ -1,4 +1,5 @@
 using BlazorStrap;
+using Blazored.Typeahead;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SearchBlazor.Components;
@@ -18,7 +19,7 @@ builder.Services.AddBlazorStrap();
 
 //search engine
 //SearchEngine.LoadDataFromJson();
-//SearchEngine.Index();
+SearchEngine.Index();
 SearchEngine.EnsureIndex();
 
 var app = builder.Build();

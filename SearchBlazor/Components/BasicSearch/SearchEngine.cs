@@ -24,7 +24,7 @@ namespace SearchBlazor.Components.BasicSearch
         /// if want to search on RAM, use RAMDirectory: _directory = new RAMDirectory();    and uncomment the third line in Index() method
         /// if want to search on Disk, use FSDirectory: _directory = FSDirectory.Open(indexPath);
         /// </summary>
-        private static RAMDirectory _Adirectory = new();
+        private static RAMDirectory _ramDirectory = new();
         private static FSDirectory _directory;
         public static IndexWriter? Writer { get; set; }
         public const string LUCENENET_DIRECTORY = "LuceneIndex";
@@ -62,6 +62,9 @@ namespace SearchBlazor.Components.BasicSearch
             Index1();
         }
 
+        /// <summary>
+        /// this index using to save the indexed data on disk
+        /// </summary>
         public static void Index1()
         {
             LoadDataFromJson();
@@ -93,16 +96,20 @@ namespace SearchBlazor.Components.BasicSearch
         }
         #endregion
 
+        /// <summary>
+        /// this index using to save the indexed data on RAM
+        /// </summary>
         #region Searching the data that store on RAM
         public static void Index()
         {
+            LoadDataFromJson();
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
             Analyzer analyzer = new StandardAnalyzer(lv);
-            // _directory = new RAMDirectory();
+            _ramDirectory = new RAMDirectory();
 
 
             var config = new IndexWriterConfig(lv, analyzer);
-            Writer = new IndexWriter(_directory, config);
+            Writer = new IndexWriter(_ramDirectory, config);
 
 
             var nameField = new TextField("Name", "", Field.Store.YES);
@@ -136,7 +143,7 @@ namespace SearchBlazor.Components.BasicSearch
         public static void Dispose()
         {
             Writer?.Dispose();
-            _directory?.Dispose();
+            _ramDirectory?.Dispose();
         }
 
         public static SearchModel Search(string input, int page)
@@ -155,6 +162,16 @@ namespace SearchBlazor.Components.BasicSearch
 
             //clean the search term
             string _input = EscapeSearchTerm(modifiedQuery);
+
+            // BooleanQuery query = new BooleanQuery();
+            // foreach (var field in fields)
+            // {
+            //     var term = new Term(field, _input);
+            //     var fuzzyQuery = new FuzzyQuery(term, 1); // Edit distance = 1 (you can increase to 2 if needed)
+            //     query.Add(fuzzyQuery, Occur.SHOULD); // SHOULD makes it match any field
+            // }
+
+            //normal search with the indexed data before
             Query query = queryParser.Parse(_input);
 
             ScoreDoc[] docs = searcher.Search(query, 1000).ScoreDocs;
@@ -191,20 +208,21 @@ namespace SearchBlazor.Components.BasicSearch
             return returnModel;
         }
 
-        public static List<string> SearchAhead(string input)
+        public static List<string> SearchAhead2(string input)
         {
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
             Analyzer a = new StandardAnalyzer(lv);
-            var dirReader = DirectoryReader.Open(_directory);
+            var dirReader = DirectoryReader.Open(_ramDirectory);
 
             LuceneDictionary dictionary = new LuceneDictionary(dirReader, "Name");
-
 
             RAMDirectory _d = new RAMDirectory();
             AnalyzingInfixSuggester analyzingSuggester = new AnalyzingInfixSuggester(lv, _d, a);
             analyzingSuggester.Build(dictionary);
 
-            var lookupResultList = analyzingSuggester.DoLookup(input.Trim(), false, 9);
+            string fuzzyInput = input.Trim();
+            //Get initial suggestions (prefix search)
+            var lookupResultList = analyzingSuggester.DoLookup(fuzzyInput, false, 9);
 
             List<string> returnModel = new List<string>();
             foreach (var result in lookupResultList)
@@ -213,6 +231,61 @@ namespace SearchBlazor.Components.BasicSearch
             }
 
             dirReader.Dispose();
+            return returnModel;
+        }
+
+        public static List<string> SearchAhead(string input)
+        {
+            const LuceneVersion lv = LuceneVersion.LUCENE_48;
+            List<string> returnModel = new List<string>();
+
+            using (Analyzer analyzer = new StandardAnalyzer(lv))
+            using (var dirReader = DirectoryReader.Open(_ramDirectory))
+            {
+                var searcher = new IndexSearcher(dirReader);
+                var fieldName = "Name";
+                var _input = input.Trim().ToLower();
+
+
+                //  var fuzzyQuery = new FuzzyQuery(new Term(fieldName, _input), maxEdits: 2, 0, 100, true);
+                // Handle special characters properly
+                Query query;
+
+                if (_input.Contains("#") || _input.Contains("+") || _input.Contains("."))
+                {
+                    // For terms with special characters, use a TermQuery for exact matching
+                    // and a FuzzyQuery for fuzzy matching
+                    BooleanQuery bq = new BooleanQuery();
+
+                    // Exact term match
+                    TermQuery termQuery = new TermQuery(new Term(fieldName, _input));
+                    bq.Add(termQuery, Occur.SHOULD);
+
+                    // Fuzzy match on the cleaned input
+                    string cleanInput = _input.ToLowerInvariant().Replace("#", "").Replace("+", "").Replace(".", "");
+                    if (!string.IsNullOrEmpty(cleanInput))
+                    {
+                        FuzzyQuery fuzzyQuery = new FuzzyQuery(new Term(fieldName, cleanInput), maxEdits: 2, 0, 100, true);
+                        bq.Add(fuzzyQuery, Occur.SHOULD);
+                    }
+
+                    query = bq;
+                }
+                else
+                {
+                    // Standard fuzzy query for regular terms
+                    query = new FuzzyQuery(new Term(fieldName, _input.ToLowerInvariant()), maxEdits: 2, 0, 100, true);
+                }
+
+                var topDocs = searcher.Search(query, 9); // Get top 9 results
+
+                foreach (var scoreDoc in topDocs.ScoreDocs)
+                {
+                    var doc = searcher.Doc(scoreDoc.Doc);
+                    returnModel.Add(doc.Get(fieldName));
+                }
+            }
+
             return returnModel;
         }
 

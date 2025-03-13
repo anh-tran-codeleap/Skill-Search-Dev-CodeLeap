@@ -13,19 +13,20 @@
     <DataAnnotationsValidator />
     <BSRow Padding="Padding.None">
         <BSCol Column="4" PaddingStart="Padding.Small">
-            <BlazoredTypeahead SearchMethod="HandleTypeAhead" @bind-Value="searchModel.SearchText"
+            <BlazoredTypeahead SearchMethod="HandleTypeAhead" TValue="string" TItem="string" Value="selectedSearchText"
+                ValueChanged="SelectedSearchTextChanged" ValueExpression="@(() => selectedSearchText)"
                 Placeholder="Enter Prose Text...">
                 <SelectedTemplate Context="searchText">
-                    @((MarkupString)@searchText)
+                    @((MarkupString) @searchText)
                 </SelectedTemplate>
                 <ResultTemplate Context="searchText">
                     @((MarkupString)@searchText)
                 </ResultTemplate>
             </BlazoredTypeahead>
         </BSCol>
-        <BSCol Column="1" Padding="Padding.None">
+        @* <BSCol Column="1" Padding="Padding.None">
             <BSButton type="Submit" Color="BSColor.Primary" PaddingTopAndBottom="Padding.Small">Search</BSButton>
-        </BSCol>
+        </BSCol> *@
     </BSRow>
 </EditForm>
 
@@ -139,7 +140,7 @@
 
 @code {
     private SearchModel searchModel = new SearchModel();
-
+    private string selectedSearchText;
     [Parameter]
     public int Page { get; set; } = 1;
     [Parameter]
@@ -148,7 +149,12 @@
     public string SearchText { get; set; } = string.Empty;
     [Parameter]
     public int SearchResultsCount { get; set; } = 0;
-
+    private void SelectedSearchTextChanged(string result)
+    {
+        selectedSearchText = result;
+        searchModel.SearchText = result;
+        HandleSearch();
+    }
     private void HandleSearch()
     {
         searchModel = SearchEngine.Search(searchModel.SearchText, 1);
@@ -165,16 +171,7 @@
 
     private async Task<IEnumerable<String>> HandleTypeAhead(string searchText)
     {
-        List<String> SResult = SearchEngine.SearchAhead(searchText);
-        IEnumerable<String> AResult = new List<String>();
-        if (!SResult.Contains(searchText))
-        {
-            AResult = SResult.Prepend("<b>" + searchText + "</b>");
-        }
-        else
-        {
-            AResult = SResult;
-        }
-        return await Task.FromResult(AResult.Where(x => x.ToLower().Contains(searchText.ToLower())).ToList());
+        List<string> SResult = SearchEngine.SearchAhead(searchText);
+        return await Task.FromResult(SResult);
     }
 }

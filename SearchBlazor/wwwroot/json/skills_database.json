@@ -2503,7 +2503,7 @@
         "name": "Theano",
         "category": "Frameworks",
         "versions": [],
-        "group": "AI/ML",
+        "grosup": "AI/ML",
         "dependencies": ["NumPy", "SciPy"],
         "relatedSkills": ["Python"]
     },

@@ -24,7 +24,7 @@ namespace SearchBlazor.Components.BasicSearch
             var tokenizer = new StandardTokenizer(_version, reader);
             TokenStream filter = new StandardFilter(_version, tokenizer);
             filter = new LowerCaseFilter(_version, filter);
-            filter = new EdgeNGramTokenFilter(_version, filter, 1, 20); // Generates partial words
+            filter = new EdgeNGramTokenFilter(_version, filter, 1, 10); // Generates partial words
             return new TokenStreamComponents(tokenizer, filter);
         }
     }
