@@ -69,8 +69,8 @@ namespace SearchBlazor.Components.BasicSearch
         {
             LoadDataFromJson();
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
-            //  Analyzer analyzer = new StandardAnalyzer(lv);
-            Analyzer analyzer = new EdgeNGramAnalyzer(lv);
+            Analyzer analyzer = new StandardAnalyzer(lv);
+            //Analyzer analyzer = new EdgeNGramAnalyzer(lv);
             // Store index in a persistent directory
             string indexPath = Path.Combine(Directory.GetCurrentDirectory(), LUCENENET_DIRECTORY);
             _directory = FSDirectory.Open(indexPath);

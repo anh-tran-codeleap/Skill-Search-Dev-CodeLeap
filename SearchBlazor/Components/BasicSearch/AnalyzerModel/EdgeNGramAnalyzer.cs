@@ -8,7 +8,7 @@ using Lucene.Net.Analysis.NGram;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Util;
 
-namespace SearchBlazor.Components.BasicSearch
+namespace SearchBlazor.Components.BasicSearch.AnalyzerModel
 {
     public class EdgeNGramAnalyzer : Analyzer
     {

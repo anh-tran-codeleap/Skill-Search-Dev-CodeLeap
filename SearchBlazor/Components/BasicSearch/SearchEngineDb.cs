@@ -7,167 +7,212 @@ using SearchBlazor.Components.Model;
 using Directory = System.IO.Directory;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using Microsoft.Azure.Cosmos;
+using SearchBlazor.Components.CosmosDb;
+using Lucene.Net.Store;
+using System.Threading.Tasks;
+using Lucene.Net.Search;
+using Lucene.Net.QueryParsers.Classic;
+using Lucene.Net.Analysis.Core;
+using SearchBlazor.Components.BasicSearch.AnalyzerModel;
 
 namespace SearchBlazor.Components.BasicSearch
 {
     public class SearchEngineDB
     {
-        public static List<Skill> Data { get; set; } = new List<Skill>();
+        public List<Skill> Data { get; set; } = new List<Skill>();
+        private static FSDirectory _directory;
         public static IndexWriter? Writer { get; set; }
-        private readonly SkillContext _context = new();
+        public const string LUCENENET_DIRECTORY = "LuceneIndex";
 
-        public SearchEngineDB(SkillContext context)
+        private readonly CosmosDbService _cosmosDbService;
+        public SearchEngineDB(CosmosDbService cosmosDbService)
         {
-            _context = context;
+            _cosmosDbService = cosmosDbService;
         }
 
-        public static void LoadDataFromDatabase()
+        public async Task LoadDataFromCosmosDB()
         {
-            using var context = new SkillContext();
-            Data = context.Skills.ToList();
-
-            Console.WriteLine($"Loaded {Data.Count} skills from the database.");
-        }
-
-        public static void LoadDataFromJson()
-        {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "json", "skills_database.json");
             try
             {
-                string json = File.ReadAllText(filePath);
-                Data = JsonConvert.DeserializeObject<List<Skill>>(json) ?? new List<Skill>();
+                var container = _cosmosDbService.GetContainer("SkillSets");
+                var query = container.GetItemQueryIterator<Skill>("SELECT * FROM c");
+                List<Skill> skills = new List<Skill>();
+
+                while (query.HasMoreResults)
+                {
+                    FeedResponse<Skill> response = await query.ReadNextAsync();
+                    skills.AddRange(response);
+                }
+
+                Data = skills;
+                Console.WriteLine($"Loaded {Data.Count} skills from Cosmos DB.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error reading JSON file: {ex.Message}");
+                Console.WriteLine($"Error fetching data from Cosmos DB: {ex.Message}");
                 Data = new List<Skill>();
             }
         }
-
-        public static void Index()
+        public async Task EnsureIndex()
         {
+            string indexPath = Path.Combine(Directory.GetCurrentDirectory(), LUCENENET_DIRECTORY);
+
+            // Check if index directory exists and contains index files
+            if (Directory.Exists(indexPath) && Directory.GetFiles(indexPath).Length > 0)
+            {
+                _directory = FSDirectory.Open(indexPath);
+                Console.WriteLine("Lucene index already exists. Skipping indexing.");
+                return;
+            }
+
+            Console.WriteLine("Index not found. Creating a new index...");
+            await Index();
+        }
+        public async Task Index()
+        {
+            await LoadDataFromCosmosDB();
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
-            Analyzer analyzer = new StandardAnalyzer(lv);
+            // Analyzer analyzer = new StandardAnalyzer(lv);
+            Analyzer analyzer = new CustomAnalyzer(lv, '/', '+', '-', '.');
+            // Analyzer analyzer = new StandardAnalyzer(lv);
+            //   Analyzer analyzer = new EdgeNGramAnalyzer(lv);
+            string indexPath = Path.Combine(Directory.GetCurrentDirectory(), LUCENENET_DIRECTORY);
+            _directory = FSDirectory.Open(indexPath);
 
-            //store on db
-            using var context = new SkillContext();
+            var config = new IndexWriterConfig(lv, analyzer);
+            Writer = new IndexWriter(_directory, config);
 
-
-            var nameField = new TextField("Name", "", Field.Store.YES);
-            var categoryField = new TextField("Category", "", Field.Store.YES);
-            var groupField = new TextField("Group", "", Field.Store.YES);
-            var dependenciesField = new TextField("Dependencies", "", Field.Store.YES);
-            var relatedSkillsField = new TextField("RelatedSkills", "", Field.Store.YES);
-
-            var d = new Document
-                {
-                    nameField,
-                    categoryField,
-                    groupField,
-                    dependenciesField,
-                    relatedSkillsField
-                };
             foreach (var tech in Data)
             {
-                nameField.SetStringValue(tech.Name);
-                categoryField.SetStringValue(tech.Category);
-                groupField.SetStringValue(tech.Group);
-                dependenciesField.SetStringValue(string.Join(", ", tech.Dependencies));
-                relatedSkillsField.SetStringValue(string.Join(", ", tech.RelatedSkills));
-
-                string indexedData = SerializeDocument(d);
-
-                // Save to database
-                var indexEntry = new LuceneIndex
+                var doc = new Document
                 {
-                    //TODO: check if this is needed
-                    //  SkillId = tech.Id,
-                    IndexedData = indexedData
+                    new TextField("Name", tech.Name, Field.Store.YES),
+                    new TextField("Category", tech.Category, Field.Store.YES),
+                    new TextField("Group", tech.Group, Field.Store.YES),
+                    new TextField("Dependencies", string.Join(", ", tech.Dependencies), Field.Store.YES),
+                    new TextField("RelatedSkills", string.Join(", ", tech.RelatedSkills), Field.Store.YES)
                 };
 
-                context.LuceneIndexes.Add(indexEntry);
+                Writer.AddDocument(doc);
             }
-        }
 
-        private static string SerializeDocument(Document doc)
+            Writer.Commit();
+        }
+        public static void Dispose()
         {
-            return string.Join("|", doc.Fields.Select(f => $"{f.Name}={f.GetStringValue()}"));
+            Writer?.Dispose();
+            _directory?.Dispose();
         }
 
         public static SearchModel Search(string input, int page)
         {
-            using var dbContext = new SkillContext();
-            input = EscapeSearchTerm(input);
-            var query = dbContext.LuceneIndexes
-                .Where(l => l.IndexedData.Contains(input))
-                .Select(l => new
-                {
-                    l.SkillId,
-                    l.Skill
-                });
+            const LuceneVersion lv = LuceneVersion.LUCENE_48;
+            Analyzer analyzer = new StandardAnalyzer(lv);
 
-            int totalResults = query.Count();
-            int pageSize = 5;
-            int pageCount = (int)Math.Ceiling(totalResults / (double)pageSize);
+            var dirReader = DirectoryReader.Open(_directory);
+            var searcher = new IndexSearcher(dirReader);
 
-            var results = query
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            string[] fields = ["Name", "Group", "Category", "Dependencies", "RelatedSkills"];
+            var queryParser = new MultiFieldQueryParser(lv, fields, analyzer);
+            queryParser.DefaultOperator = Operator.AND;
 
-            return new SearchModel
+            string modifiedQuery = $"{input.Trim()}";
+
+            //clean the search term
+            string _input = EscapeSearchTerm(modifiedQuery);
+
+            //normal search with the indexed data before
+            Query query = queryParser.Parse(_input);
+
+            ScoreDoc[] docs = searcher.Search(query, 1000).ScoreDocs;
+
+            foreach (var doc in searcher.Search(query, 1000).ScoreDocs)
             {
-                SearchResults = results.Select(r => r.Skill).ToList(),
-                SearchText = input.Trim(),
-                ResultsCount = totalResults,
-                PageCount = pageCount,
-                CurrentPage = page
-            };
-        }
+                var document = searcher.Doc(doc.Doc);
+                Console.WriteLine($"Indexed Name: {document.Get("Name")}");
+            }
 
+            var returnModel = new SearchModel();
+            returnModel.SearchResults = new List<Skill>();
+            returnModel.SearchText = input.Trim();
+            returnModel.ResultsCount = docs.Length;
+            returnModel.PageCount = (int)Math.Ceiling(docs.Length / 5.0);
+            returnModel.CurrentPage = page;
+
+            int first = (page - 1) * 5;
+            int last = first + 5;
+
+            for (int i = first; i < last && i < docs.Length; i++)
+            {
+                Document doc = searcher.Doc(docs[i].Doc);
+                returnModel.SearchResults.Add(new Skill
+                {
+                    Name = doc.Get("Name"),
+                    Group = doc.Get("Group"),
+                    Category = doc.Get("Category"),
+                    Dependencies = doc.Get("Dependencies")?.Split(", ").ToList() ?? new List<string>(),
+                    RelatedSkills = doc.Get("RelatedSkills")?.Split(", ").ToList() ?? new List<string>()
+                });
+            }
+            dirReader.Dispose();
+            return returnModel;
+        }
 
         public static List<string> SearchAhead(string input)
         {
-            using var dbContext = new SkillContext();
+            const LuceneVersion lv = LuceneVersion.LUCENE_48;
+            List<string> returnModel = new List<string>();
 
-            return dbContext.LuceneIndexes
-                .Where(l => l.IndexedData.Contains(input))
-                .Select(l => l.Skill.Name)
-                .Distinct()
-                .Take(9)
-                .ToList();
-        }
-
-        public static void IndexDatabase()
-        {
-            using var dbContext = new SkillContext();
-
-            if (dbContext.LuceneIndexes.Any())
+            //    using (Analyzer analyzer = new StandardAnalyzer(lv))
+            using (var dirReader = DirectoryReader.Open(_directory))
             {
-                Console.WriteLine("Index already exists in database. Skipping.");
-                return;
+                var searcher = new IndexSearcher(dirReader);
+                var fieldName = "Name";
+                var _input = input.Trim().ToLower();
+
+                Query query;
+
+                if (_input.Contains("#") || _input.Contains("+") || _input.Contains("."))
+                {
+
+                    BooleanQuery bq = new BooleanQuery();
+                    TermQuery termQuery = new TermQuery(new Term(fieldName, _input));
+                    bq.Add(termQuery, Occur.SHOULD);
+
+                    string cleanInput = _input.ToLowerInvariant().Replace("#", "").Replace("+", "").Replace(".", "");
+                    if (!string.IsNullOrEmpty(cleanInput))
+                    {
+                        FuzzyQuery fuzzyQuery = new FuzzyQuery(new Term(fieldName, cleanInput), maxEdits: 2, 0, 100, true);
+                        bq.Add(fuzzyQuery, Occur.SHOULD);
+                    }
+
+                    query = bq;
+                }
+                else
+                {
+                    // Standard fuzzy query for regular terms
+                    query = new FuzzyQuery(new Term(fieldName, _input.ToLowerInvariant()), maxEdits: 2, 0, 100, true);
+                }
+
+                var topDocs = searcher.Search(query, 9); // Get top 9 results
+
+                foreach (var scoreDoc in topDocs.ScoreDocs)
+                {
+                    var doc = searcher.Doc(scoreDoc.Doc);
+                    returnModel.Add(doc.Get(fieldName));
+                }
             }
 
-            Console.WriteLine("Creating database index...");
-
-            var indexedSkills = Data.Select(skill => new LuceneIndex
-            {
-                //TODO:  SkillId = skill.Id, // Make sure Skill has an Id
-                IndexedData = $"{skill.Name} {skill.Group} {skill.Category} {string.Join(", ", skill.Dependencies)} {string.Join(", ", skill.RelatedSkills)}"
-            });
-
-            dbContext.LuceneIndexes.AddRange(indexedSkills);
-            dbContext.SaveChanges();
-
-            Console.WriteLine("Index created successfully.");
+            return returnModel;
         }
-
 
         private static string EscapeSearchTerm(string input)
         {
             input = Regex.Replace(input, @"<b>", "");
             input = Regex.Replace(input, @"</b>", "");
             input = Regex.Replace(input, @"\+", " ");
+            input = Regex.Replace(input, @"\/", " ");
             input = Regex.Replace(input, @"\-", " ");
             input = Regex.Replace(input, @"\&", " ");
             input = Regex.Replace(input, @"\|", " ");
@@ -180,7 +225,7 @@ namespace SearchBlazor.Components.BasicSearch
             input = Regex.Replace(input, @"\]", " ");
             input = Regex.Replace(input, @"\^", " ");
             input = Regex.Replace(input, @"\""", " ");
-            input = Regex.Replace(input, @"\~", " ");
+            //  input = Regex.Replace(input, @"\~", " ");
             input = Regex.Replace(input, @"\*", " ");
             input = Regex.Replace(input, @"\?", " ");
             input = Regex.Replace(input, @"\:", " ");

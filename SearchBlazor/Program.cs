@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SearchBlazor.Components;
 using SearchBlazor.Components.BasicSearch;
 using SearchBlazor.Components.Model;
+using SearchBlazor.Components.CosmosDb;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +20,18 @@ builder.Services.AddBlazorStrap();
 
 //search engine
 //SearchEngine.LoadDataFromJson();
-SearchEngine.Index();
-SearchEngine.EnsureIndex();
+// SearchEngine.Index();
+// SearchEngine.EnsureIndex();
+builder.Services.AddSingleton<CosmosDbService>();
+builder.Services.AddSingleton<SearchEngineDB>();
+var cosmosDbService = builder.Services.BuildServiceProvider().GetRequiredService<CosmosDbService>();
+var searchEngine = new SearchEngineDB(cosmosDbService);
+await searchEngine.EnsureIndex();
+
+
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

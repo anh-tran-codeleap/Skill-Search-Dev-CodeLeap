@@ -1,0 +1,65 @@
+@page "/search-skills-cosmosdb"
+@using SearchBlazor.Components.CosmosDb
+@using SearchBlazor.Components.Model
+@rendermode InteractiveServer
+@inject CosmosDbService CosmosDbService
+
+<h3>Skills List</h3>
+
+<div>
+    <label>Search by Name or Category:</label>
+    <input @bind="SearchText" placeholder="Enter search..." />
+    <button @onclick="SearchSkills">Search</button>
+</div>
+
+@if (IsLoading)
+{
+    <p>Loading skills...</p>
+}
+else if (Skills.Count == 0)
+{
+    <p>No skills found.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Group</th>
+                <th>Versions</th>
+                <th>Dependencies</th>
+                <th>Related Skills</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var skill in Skills)
+            {
+                <tr>
+                    <td>@skill.Name</td>
+                    <td>@skill.Category</td>
+                    <td>@skill.Group</td>
+                    <td>@string.Join(", ", skill.Versions)</td>
+                    <td>@string.Join(", ", skill.Dependencies)</td>
+                    <td>@string.Join(", ", skill.RelatedSkills)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string SearchText = string.Empty;
+    private List<Skill> Skills = new();
+    private bool IsLoading = false;
+
+    private async Task SearchSkills()
+    {
+        IsLoading = true;
+        string query = $"SELECT * FROM c WHERE CONTAINS(c.name, '{SearchText}')";
+        //WHERE CONTAINS(c.Name, '{SearchText}') OR CONTAINS(c.Category, '{SearchText}')";
+        Skills = await CosmosDbService.QueryItemsAsync<Skill>("SkillSets", "id", query);
+        IsLoading = false;
+    }
+}

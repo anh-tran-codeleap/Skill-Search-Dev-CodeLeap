@@ -17,7 +17,7 @@
                 ValueChanged="SelectedSearchTextChanged" ValueExpression="@(() => selectedSearchText)"
                 Placeholder="Enter Prose Text...">
                 <SelectedTemplate Context="searchText">
-                    @((MarkupString) @searchText)
+                    @((MarkupString)@searchText)
                 </SelectedTemplate>
                 <ResultTemplate Context="searchText">
                     @((MarkupString)@searchText)
@@ -157,7 +157,7 @@
     }
     private void HandleSearch()
     {
-        searchModel = SearchEngine.Search(searchModel.SearchText, 1);
+        searchModel = SearchEngineDB.Search(searchModel.SearchText, 1);
         SearchResultsCount = searchModel.ResultsCount;
         PageCount = searchModel.PageCount;
         SearchText = searchModel.SearchText;
@@ -171,7 +171,7 @@
 
     private async Task<IEnumerable<String>> HandleTypeAhead(string searchText)
     {
-        List<string> SResult = SearchEngine.SearchAhead(searchText);
+        List<string> SResult = SearchEngineDB.SearchAhead(searchText);
         return await Task.FromResult(SResult);
     }
 }
