@@ -1,0 +1,18 @@
+.dropdown-group {
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    padding: 5px;
+    text-align: center;
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}

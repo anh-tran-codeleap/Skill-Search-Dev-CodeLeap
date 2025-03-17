@@ -31,6 +31,23 @@ namespace SearchBlazor.Components.BasicSearch
             _cosmosDbService = cosmosDbService;
         }
 
+        public async Task ReadIndexDocument()
+        {
+            using var reader = DirectoryReader.Open(_directory);
+
+            Console.WriteLine($"Total Documents: {reader.NumDocs}");
+
+            for (int i = 0; i < reader.MaxDoc; i++)
+            {
+                var doc = reader.Document(i);
+                Console.WriteLine($"Document {i}:");
+
+                foreach (var field in doc.Fields)
+                {
+                    Console.WriteLine($"  {field.Name}: {doc.Get(field.Name)}");
+                }
+            }
+        }
         public async Task LoadDataFromCosmosDB()
         {
             try
@@ -159,53 +176,63 @@ namespace SearchBlazor.Components.BasicSearch
             return returnModel;
         }
 
-        public static List<string> SearchAhead(string input)
+        public static List<SearchResult> SearchAhead(string input, int maxResults = 30)
         {
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
-            List<string> returnModel = new List<string>();
+            List<SearchResult> returnModel = new List<SearchResult>();
 
-            //    using (Analyzer analyzer = new StandardAnalyzer(lv))
             using (var dirReader = DirectoryReader.Open(_directory))
             {
                 var searcher = new IndexSearcher(dirReader);
-                var fieldName = "Name";
-                var _input = input.Trim().ToLower();
+                string[] searchFields = { "Name", "Group" };
+                string _input = input.Trim().ToLowerInvariant();
 
-                Query query;
+                BooleanQuery booleanQuery = new BooleanQuery();
 
+                // Normalize input by removing special characters
+                string cleanInput = _input.Replace("#", "").Replace("+", "").Replace(".", "");
+
+                // If input contains special characters, add multiple query variations
                 if (_input.Contains("#") || _input.Contains("+") || _input.Contains("."))
                 {
-
-                    BooleanQuery bq = new BooleanQuery();
-                    TermQuery termQuery = new TermQuery(new Term(fieldName, _input));
-                    bq.Add(termQuery, Occur.SHOULD);
-
-                    string cleanInput = _input.ToLowerInvariant().Replace("#", "").Replace("+", "").Replace(".", "");
                     if (!string.IsNullOrEmpty(cleanInput))
                     {
-                        FuzzyQuery fuzzyQuery = new FuzzyQuery(new Term(fieldName, cleanInput), maxEdits: 2, 0, 100, true);
-                        bq.Add(fuzzyQuery, Occur.SHOULD);
+                        foreach (var field in searchFields)
+                        {
+                            booleanQuery.Add(new FuzzyQuery(new Term(field, cleanInput), maxEdits: 2), Occur.SHOULD);
+                        }
                     }
-
-                    query = bq;
+                    booleanQuery.Add(new TermQuery(new Term("Name", _input)), Occur.SHOULD);
                 }
                 else
                 {
-                    // Standard fuzzy query for regular terms
-                    query = new FuzzyQuery(new Term(fieldName, _input.ToLowerInvariant()), maxEdits: 2, 0, 100, true);
+                    // Apply fuzzy search to both Name and Group
+                    foreach (var field in searchFields)
+                    {
+                        booleanQuery.Add(new FuzzyQuery(new Term(field, _input), maxEdits: 2), Occur.SHOULD);
+                    }
                 }
 
-                var topDocs = searcher.Search(query, 9); // Get top 9 results
+                var topDocs = searcher.Search(booleanQuery, maxResults);
 
                 foreach (var scoreDoc in topDocs.ScoreDocs)
                 {
                     var doc = searcher.Doc(scoreDoc.Doc);
-                    returnModel.Add(doc.Get(fieldName));
+                    string name = doc.Get("Name");
+                    string group = doc.Get("Group");
+
+                    // Ensure unique results
+                    if (!returnModel.Any(r => r.Name == name))
+                    {
+                        returnModel.Add(new SearchResult { Name = name, Group = group });
+                    }
                 }
             }
 
-            return returnModel;
+            // Sort results by group for proper display in Blazor
+            return returnModel.OrderBy(r => r.Group).ToList();
         }
+
 
         private static string EscapeSearchTerm(string input)
         {

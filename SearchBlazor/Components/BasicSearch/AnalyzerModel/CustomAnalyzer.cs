@@ -25,6 +25,7 @@ namespace SearchBlazor.Components.BasicSearch.AnalyzerModel
         {
             var tokenizer = new StandardTokenizer(matchVersion, reader);
             TokenStream filter = new LowerCaseFilter(matchVersion, tokenizer);
+            //indexing the specified characters ex: CI/CD => CI CD CI_CD
             filter = new CustomSplitTokenFilter(filter, splitChars);
             return new TokenStreamComponents(tokenizer, filter);
         }

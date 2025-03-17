@@ -1,6 +1,9 @@
 @page "/basic-search"
 @using SearchBlazor.Components.BasicSearch
+@using SearchBlazor.Components.Model
+@using static SearchBlazor.Components.BasicSearch.SearchEngineDB
 @rendermode InteractiveServer
+
 
 <PageTitle>Prose Search</PageTitle>
 
@@ -13,20 +16,41 @@
     <DataAnnotationsValidator />
     <BSRow Padding="Padding.None">
         <BSCol Column="4" PaddingStart="Padding.Small">
-            <BlazoredTypeahead SearchMethod="HandleTypeAhead" TValue="string" TItem="string" Value="selectedSearchText"
+            <BlazoredTypeahead SearchMethod="HandleTypeAhead" TValue="SearchResult" TItem="SearchResult"
+                Value="@selectedSearch" ValueChanged="SelectedSearchChanged" ValueExpression="@(() => selectedSearch)"
+                Placeholder="Enter Prose Text..." MaximumSuggestions="30">
+
+                <ResultTemplate Context="suggestion">
+                    @if (previousGroup != suggestion.Group)
+                    {
+                        previousGroup = suggestion.Group;
+                        <div style="font-weight:bold; color:blue; padding: 5px; background-color: lightgray;"
+                            class="dropdown-group">
+                            @suggestion.Group
+                        </div>
+                    }
+                    <div class="dropdown-item"
+                        style="font-weight:bold; color:black; padding: 5px; background-color: pink;">
+                        @suggestion.Name
+                    </div>
+                    @* <div>@suggestion.Name</div> *@
+                </ResultTemplate>
+
+                <SelectedTemplate Context="suggestion">
+                    @suggestion.Name
+                </SelectedTemplate>
+            </BlazoredTypeahead>
+            @* <BlazoredTypeahead SearchMethod="HandleTypeAhead" TValue="string" TItem="string" Value="selectedSearchText"
                 ValueChanged="SelectedSearchTextChanged" ValueExpression="@(() => selectedSearchText)"
-                Placeholder="Enter Prose Text...">
+                Placeholder="Enter Prose Text..." MaximumSuggestions="30">
                 <SelectedTemplate Context="searchText">
                     @((MarkupString)@searchText)
                 </SelectedTemplate>
                 <ResultTemplate Context="searchText">
                     @((MarkupString)@searchText)
                 </ResultTemplate>
-            </BlazoredTypeahead>
+            </BlazoredTypeahead> *@
         </BSCol>
-        @* <BSCol Column="1" Padding="Padding.None">
-            <BSButton type="Submit" Color="BSColor.Primary" PaddingTopAndBottom="Padding.Small">Search</BSButton>
-        </BSCol> *@
     </BSRow>
 </EditForm>
 
@@ -140,7 +164,6 @@
 
 @code {
     private SearchModel searchModel = new SearchModel();
-    private string selectedSearchText;
     [Parameter]
     public int Page { get; set; } = 1;
     [Parameter]
@@ -151,7 +174,6 @@
     public int SearchResultsCount { get; set; } = 0;
     private void SelectedSearchTextChanged(string result)
     {
-        selectedSearchText = result;
         searchModel.SearchText = result;
         HandleSearch();
     }
@@ -166,12 +188,22 @@
 
     private void UpdatePage()
     {
-        searchModel = SearchEngine.Search(searchModel.SearchText, Page);
+        searchModel = SearchEngineDB.Search(searchModel.SearchText, Page);
     }
 
-    private async Task<IEnumerable<String>> HandleTypeAhead(string searchText)
+    private async Task<IEnumerable<SearchResult>> HandleTypeAhead(string searchText)
     {
-        List<string> SResult = SearchEngineDB.SearchAhead(searchText);
+        List<SearchResult> SResult = SearchEngineDB.SearchAhead(searchText, 30);
         return await Task.FromResult(SResult);
+    }
+
+    private SearchResult selectedSearch;
+    private string previousGroup = string.Empty;
+
+    private void SelectedSearchChanged(SearchResult suggestion)
+    {
+        // selectedSearch = suggestion;
+        searchModel.SearchText = suggestion.Name;
+        HandleSearch();
     }
 }
